@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8" />
+<title>מבחן מתמטיקה - חיבור, חיסור, כפל וחילוק</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fffbe6;
+  }
+  h1 {
+    color: #d97a00;
+    text-align: center;
+  }
+  .question {
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+  button {
+    background-color: #d97a00;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  #results {
+    margin-top: 25px;
+    font-size: 18px;
+    background-color: #fff4cc;
+    border-radius: 10px;
+    padding: 15px;
+  }
+  .answer-explanation {
+    margin: 10px 0 20px 0;
+    color: #555;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+
+<h1>מבחן מתמטיקה - חיבור, חיסור, כפל וחילוק</h1>
+
+<form id="mathTest">
+
+  <div class="question" id="q1">1. 7 + 5 = ?<br>
+    <input type="number" id="a1" required>
+  </div>
+
+  <div class="question" id="q2">2. 15 - 6 = ?<br>
+    <input type="number" id="a2" required>
+  </div>
+
+  <div class="question" id="q3">3. 4 × 3 = ?<br>
+    <input type="number" id="a3" required>
+  </div>
+
+  <div class="question" id="q4">4. 20 ÷ 5 = ?<br>
+    <input type="number" id="a4" required>
+  </div>
+
+  <div class="question" id="q5">5. 9 + 8 = ?<br>
+    <input type="number" id="a5" required>
+  </div>
+
+  <div class="question" id="q6">6. 18 - 7 = ?<br>
+    <input type="number" id="a6" required>
+  </div>
+
+  <div class="question" id="q7">7. 6 × 7 = ?<br>
+    <input type="number" id="a7" required>
+  </div>
+
+  <div class="question" id="q8">8. 24 ÷ 6 = ?<br>
+    <input type="number" id="a8" required>
+  </div>
+
+  <div class="question" id="q9">9. 5 + 12 = ?<br>
+    <input type="number" id="a9" required>
+  </div>
+
+  <div class="question" id="q10">10. 30 - 14 = ?<br>
+    <input type="number" id="a10" required>
+  </div>
+
+  <button type="button" onclick="checkAnswers()">בדוק תשובות</button>
+</form>
+
+<div id="results"></div>
+
+<script>
+  const correctAnswers = [12, 9, 12, 4, 17, 11, 42, 4, 17, 16];
+  const explanations = [
+    "7 + 5 זה חיבור של 7 ועוד 5, התוצאה היא 12.",
+    "15 - 6 זה חיסור 6 מ-15, נשאר 9.",
+    "4 × 3 זה כפל, כלומר 4+4+4=12.",
+    "20 ÷ 5 זה חלוקה של 20 ל-5 חלקים שווים, כל חלק הוא 4.",
+    "9 + 8 זה 9 ועוד 8, התוצאה היא 17.",
+    "18 - 7 זה חיסור 7 מ-18, התוצאה היא 11.",
+    "6 × 7 זה כפל, 6+6+6+6+6+6+6 = 42.",
+    "24 ÷ 6 זה חלוקה של 24 ל-6 חלקים שווים, כל חלק הוא 4.",
+    "5 + 12 זה חיבור של 5 ועוד 12, התוצאה היא 17.",
+    "30 - 14 זה חיסור 14 מ-30, התוצאה היא 16."
+  ];
+
+  function checkAnswers() {
+    let score = 0;
+    let resultHTML = "<h2>תוצאות:</h2>";
+
+    for (let i = 1; i <= 10; i++) {
+      const userAnswer = Number(document.getElementById("a"+i).value);
+      const correct = correctAnswers[i-1];
+      resultHTML += `<div><strong>שאלה ${i}:</strong> התשובה שלך: ${userAnswer} - `;
+      if (userAnswer === correct) {
+        score++;
+        resultHTML += "<span style='color:green'>נכון!</span>";
+      } else {
+        resultHTML += `<span style='color:red'>לא נכון.</span><br><em>הסבר: ${explanations[i-1]}</em>`;
+      }
+      resultHTML += "</div><hr>";
+    }
+
+    resultHTML += `<h3>סך הכל נקודות: ${score} מתוך 10</h3>`;
+    document.getElementById("results").innerHTML = resultHTML;
+  }
+</script>
+
+</body>
+</html>
